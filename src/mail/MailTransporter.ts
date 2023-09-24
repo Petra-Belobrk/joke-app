@@ -10,7 +10,7 @@ export default class MailTransporter {
     this.init();
   }
 
-  async init() {
+  async init(): Promise<void> {
     this.transporter = createTransport({
       service: 'gmail',
       auth: {

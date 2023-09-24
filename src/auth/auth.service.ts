@@ -24,13 +24,12 @@ export class AuthService {
       user.password,
     );
 
-    if (user && passMatch) {
-      const payload = { email: user.email, sub: user.id };
-      return {
-        accessToken: this.jwtService.sign(payload),
-      };
-    }
+    if (!passMatch) throw new UnauthorizedException();
 
-    throw new UnauthorizedException();
+    const payload = { email: user.email, sub: user.id };
+
+    return {
+      accessToken: this.jwtService.sign(payload),
+    };
   }
 }

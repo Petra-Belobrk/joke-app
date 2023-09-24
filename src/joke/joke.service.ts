@@ -22,7 +22,7 @@ export class JokeService {
   }
 
   async fetchJoke(): Promise<string> {
-    return await this.httpService.axiosRef
+    return this.httpService.axiosRef
       .get(this.configService.get<string>('JOKE_API'))
       .then((res) => res.data.value);
   }
